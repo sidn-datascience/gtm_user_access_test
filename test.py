@@ -154,7 +154,28 @@ def add_or_update_permission(
   account_permission:str,
   container_permission:str
 ) -> dict:
-  """docstring"""
+  """Adds or updates the access of an existing user for a given Tag Manager account and container.
+
+  Args:
+    account_id (str): The ID of the Tag Manager account.
+    container_id (str): The ID of the Tag Manager container.
+    user_email (str): The email address of the user to add.
+    account_permission (str, optional): The permission level for the user on the entire account. Defaults to 'accountPermissionUnspecified'. Valid options are:
+      - 'accountPermissionUnspecified': Unspecified permission level (not recommended).
+      - 'admin': Grants administrator access to the account.
+      - 'noAccess': Revokes any access to the account.
+      - 'user': Grants basic user access to the account (view information).
+    container_permission (str, optional): The permission level for the user within the specific container. Defaults to 'containerPermissionUnspecified'. Valid options are:
+      - 'containerPermissionUnspecified': Unspecified permission level (not recommended).
+      - 'approve': Allows approving container versions.
+      - 'edit': Allows editing the container content.
+      - 'noAccess': Revokes any access to the container.
+      - 'publish': Allows publishing container versions.
+      - 'read': Allows viewing the container content.
+
+  Returns:
+    dict: The newly created or updated user access object as a dictionary.
+  """
 
   access_list_for_this_account = list_tag_manager_accesses(account_id=account_id)
 
