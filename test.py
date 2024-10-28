@@ -1,6 +1,15 @@
 from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
+
 from pprint import pprint as print
+from typing import List
+
+SERVICE_ACCOUNT_FILE = './service_account.json'
+SCOPES = ['https://www.googleapis.com/auth/tagmanager.manage.users']
+
+def get_credentials(service_account_file:str, scopes:List[str]) -> Credentials:
+  creds = Credentials.from_service_account_file(service_account_file, scopes=scopes)
+  return creds
 
 def create_tag_manager_user_access(
   account_id:str,
@@ -31,11 +40,7 @@ def create_tag_manager_user_access(
   Returns:
     dict: The newly created user access object as a dictionary.
   """
-  SERVICE_ACCOUNT_FILE = './service_account.json'
-
-  SCOPES = ['https://www.googleapis.com/auth/tagmanager.manage.users']
-
-  creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+  creds = get_credentials(SERVICE_ACCOUNT_FILE, SCOPES)
 
   service = build('tagmanager', 'v2', credentials=creds)
 
@@ -92,11 +97,7 @@ def update_tag_manager_user_access(
   Returns:
     dict: The updated user access object as a dictionary.
   """
-  SERVICE_ACCOUNT_FILE = './service_account.json'
-
-  SCOPES = ['https://www.googleapis.com/auth/tagmanager.manage.users']
-
-  creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+  creds = get_credentials(SERVICE_ACCOUNT_FILE, SCOPES)
 
   service = build('tagmanager', 'v2', credentials=creds)
 
@@ -132,11 +133,7 @@ def list_tag_manager_accesses(account_id:str) -> dict:
   Returns:
     dict: The updated user access object as a dictionary.
   """
-  SERVICE_ACCOUNT_FILE = './service_account.json'
-
-  SCOPES = ['https://www.googleapis.com/auth/tagmanager.manage.users']
-
-  creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+  creds = get_credentials(SERVICE_ACCOUNT_FILE, SCOPES)
 
   service = build('tagmanager', 'v2', credentials=creds)
 
