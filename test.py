@@ -204,12 +204,3 @@ def add_or_update_permission(
     )
   
   return response
-
-response = add_or_update_permission(
-  account_id='6255580547',
-  container_id='198745144',
-  user_email='alick888@gmail.com',
-  account_permission='user',
-  container_permission='read'
-)
-print(response)
