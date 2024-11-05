@@ -2,7 +2,6 @@ from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 
 from pprint import pprint as print
-from typing import List
 
 SERVICE_ACCOUNT_FILE = './service_account.json'
 SCOPES = [
@@ -10,7 +9,7 @@ SCOPES = [
   'https://www.googleapis.com/auth/tagmanager.readonly'
 ]
 
-def get_credentials(service_account_file:str, scopes:List[str]) -> Credentials:
+def get_credentials(service_account_file:str, scopes:list[str]) -> Credentials:
   creds = Credentials.from_service_account_file(service_account_file, scopes=scopes)
   return creds
 
